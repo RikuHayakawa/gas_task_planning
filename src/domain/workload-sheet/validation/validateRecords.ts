@@ -2,7 +2,19 @@
 import {
   validateWorkloadRecord,
   WorkloadRecord,
-} from "../model/WorkloadRecord";
+} from "../models/WorkloadRecord";
+// --- WorkloadSheetRepositoryの使用例 ---
+// import { WorkloadSheetRepository } from "../../../../../repositories/WorkloadSheetRepository";
+// const repository = new WorkloadSheetRepository();
+// const workloadSheet = repository.getWorkloadSheet();
+// if (workloadSheet) {
+//   // workloadSheet.records でレコード配列にアクセスできます
+//   console.log(workloadSheet.records);
+// } else {
+//   // シート取得やバリデーションに失敗した場合
+//   console.log("取得失敗");
+// }
+// --------------------------------------
 
 export interface ValidationResult {
   valid: boolean;
