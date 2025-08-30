@@ -1,6 +1,6 @@
 // シート全体のモデル
 import { WorkloadRecord } from "./WorkloadRecord";
 
-export interface WorkloadSheet {
+export interface WorkloadObject {
   records: WorkloadRecord[];
 }

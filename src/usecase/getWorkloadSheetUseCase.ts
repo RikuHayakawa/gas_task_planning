@@ -1,4 +1,4 @@
-import { ISpreadsheetRepository } from "../repositories/IWorkloadSheetRepository";
+import { ISpreadsheetRepository } from "../repositories/ISpreadsheetRepository";
 
 export class SheetUseCase<T> {
   constructor(private repository: ISpreadsheetRepository<T>) {}

@@ -1,17 +1,17 @@
-import { SHEET_HEADER_NAMES } from "../domain/workload-sheet/constants/sheet-header-names";
-import { WORKLOAD_SHEET_NAME } from "../domain/workload-sheet/constants/sheet-name";
-import { WorkloadSheet } from "../domain/workload-sheet/models/WorkloadSheet";
-import { WorkloadRecord } from "../domain/workload-sheet/models/WorkloadRecord";
-import { validateRecords } from "../domain/workload-sheet/validation/validateRecords";
-import { ISpreadsheetRepository } from "./IWorkloadSheetRepository";
+import { WORKLOAD_SHEET_NAME } from "../domain/workload/constants/workload-sheet-name";
+import { WorkloadObject } from "../domain/workload/models/WorkloadObject";
+import { WorkloadRecord } from "../domain/workload/models/WorkloadRecord";
+import { validateRecords } from "../domain/workload/validation/validateRecords";
+import { ISpreadsheetRepository } from "./ISpreadsheetRepository";
+import { WORKLOAD_SHEET_HEADER_NAMES } from "../domain/workload/constants/workload-sheet-header-names";
 
 export class WorkloadSheetRepository
-  implements ISpreadsheetRepository<WorkloadSheet>
+  implements ISpreadsheetRepository<WorkloadObject>
 {
   /**
-   * スプレッドシートからWorkloadSheetを取得
+   * スプレッドシートからWorkloadObjectを取得
    */
-  getSheetData(): WorkloadSheet | null {
+  getSheetData(): WorkloadObject | null {
     const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
     try {
       const sheet = spreadsheet.getSheetByName(WORKLOAD_SHEET_NAME);
@@ -20,7 +20,9 @@ export class WorkloadSheetRepository
         return null;
       }
       const headers = sheet.getRange(1, 1, 1, 10).getValues()[0];
-      if (!headers.every((header, i) => header === SHEET_HEADER_NAMES[i])) {
+      if (
+        !headers.every((header, i) => header === WORKLOAD_SHEET_HEADER_NAMES[i])
+      ) {
         Logger.log(
           `エラー: 「${WORKLOAD_SHEET_NAME}」シートのヘッダーが不正です`
         );

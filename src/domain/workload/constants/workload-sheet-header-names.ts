@@ -1,4 +1,4 @@
-export const SHEET_HEADER_NAMES = [
+export const WORKLOAD_SHEET_HEADER_NAMES = [
     'グループ',
     '項目',
     '優先度',

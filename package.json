@@ -5,6 +5,7 @@
   "main": "index.ts",
   "scripts": {
     "build": "node build.js",
+    "clean": "node scripts/clean-dist.js",
     "push": "clasp push",
     "open": "clasp open-script",
     "deploy:gas": "pnpm build && pnpm push && pnpm open",
