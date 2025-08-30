@@ -59,8 +59,7 @@ export class WeeklyScheduleSheetRepository
       }
       return { records };
     } catch (error) {
-      Logger.log(`エラー: シートの取得に失敗しました - ${error}`);
-      return null;
+      throw new Error(`エラー: シートの取得に失敗しました - ${error}`);
     }
   }
 }

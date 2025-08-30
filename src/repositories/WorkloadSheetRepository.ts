@@ -46,14 +46,14 @@ export class WorkloadSheetRepository
         totalWorkload: Number(row[8]),
         plannedTotalWorkload: Number(row[9]),
       }));
-      if (!validateRecords(records).valid) {
-        Logger.log("レコードバリデーションエラー");
-        return null;
+      const { filteredRecords, valid, reasons } = validateRecords(records);
+      if (!valid) {
+        throw new Error(reasons.join(", "));
       }
-      return { records };
+      return { records: filteredRecords };
     } catch (error) {
-      Logger.log(`エラー: シートの取得に失敗しました - ${error}`);
-      return null;
+      throw new Error(`エラー: シートの取得に失敗しました - ${error}`);
     }
   }
 }
+  

@@ -15,17 +15,30 @@ export interface WorkloadRecord {
 }
 
 export function validateWorkloadRecord(record: WorkloadRecord): {
-    valid: boolean;
-    reasons: string;
+  valid: boolean;
+  reasons: string;
+  skip: boolean;
 } {
+  // スキップ
+  if (!record.group || !record.item)
+    return {
+      valid: true,
+      reasons: "グループまたは項目が未入力のためスキップします。",
+      skip: true,
+    };
   // 必須項目チェック
-  if (record.rowNumber == null) return { valid: false, reasons: "行番号が未設定" };
-  if (!record.group || !record.item) return { valid: false, reasons: "グループまたは項目が未入力" };
-  if (!record.startDate || !record.endDate) return { valid: false, reasons: "開始日または終了日が未入力" };
+  if (record.rowNumber == null)
+    return { valid: false, reasons: "行番号が未設定", skip: false };
+  if (!record.startDate || !record.endDate)
+    return { valid: false, reasons: "開始日または終了日が未入力", skip: false };
   // 数値項目のバリデーション
-  if (record.period < 0) return { valid: false, reasons: "期間が0未満" };
-  if (record.workloadPerDay < 0) return { valid: false, reasons: "単日工数が0未満" };
-  if (record.totalWorkload < 0) return { valid: false, reasons: "総工数が0未満" };
-  if (record.plannedTotalWorkload < 0) return { valid: false, reasons: "予定総工数が0未満" };
-  return { valid: true, reasons: "" };
+  if (record.period < 0)
+    return { valid: false, reasons: "期間が0未満", skip: false };
+  if (record.workloadPerDay < 0)
+    return { valid: false, reasons: "単日工数が0未満", skip: false };
+  if (record.totalWorkload < 0)
+    return { valid: false, reasons: "総工数が0未満", skip: false };
+  if (record.plannedTotalWorkload < 0)
+    return { valid: false, reasons: "予定総工数が0未満", skip: false };
+  return { valid: true, reasons: "", skip: false };
 }
