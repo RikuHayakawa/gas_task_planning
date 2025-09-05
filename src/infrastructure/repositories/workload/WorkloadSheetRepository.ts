@@ -1,9 +1,9 @@
-import { WORKLOAD_SHEET_NAME } from "../domain/workload/constants/workload-sheet-name";
-import { WorkloadObject } from "../domain/workload/models/WorkloadObject";
-import { WorkloadRecord } from "../domain/workload/models/WorkloadRecord";
-import { validateRecords } from "../domain/workload/validation/validateRecords";
-import { ISpreadsheetRepository } from "./ISpreadsheetRepository";
-import { WORKLOAD_SHEET_HEADER_NAMES } from "../domain/workload/constants/workload-sheet-header-names";
+import { ISpreadsheetRepository } from "../../../domain/repositories/ISpreadsheetRepository";
+import { WorkloadObject } from "../../../domain/workload/models/WorkloadObject";
+import { WorkloadRecord } from "../../../domain/workload/models/WorkloadRecord";
+import { validateRecords } from "../../../domain/workload/validation/validateRecords";
+import { WORKLOAD_SHEET_HEADER_NAMES } from "./constants/workload-sheet-header-names";
+import { WORKLOAD_SHEET_NAME } from "./constants/workload-sheet-name";
 
 export class WorkloadSheetRepository
   implements ISpreadsheetRepository<WorkloadObject>
@@ -56,4 +56,3 @@ export class WorkloadSheetRepository
     }
   }
 }
-  
